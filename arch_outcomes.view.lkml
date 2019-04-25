@@ -1,69 +1,115 @@
 view: arch_outcomes {
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
-  # dimension: user_id {
-  #   description: "Unique ID for each user that has ordered"
-  #   type: number
-  #   sql: ${TABLE}.user_id ;;
-  # }
-  #
-  # dimension: lifetime_orders {
-  #   description: "The total number of orders for each user"
-  #   type: number
-  #   sql: ${TABLE}.lifetime_orders ;;
-  # }
-  #
-  # dimension_group: most_recent_purchase {
-  #   description: "The date when each user last ordered"
-  #   type: time
-  #   timeframes: [date, week, month, year]
-  #   sql: ${TABLE}.most_recent_purchase_at ;;
-  # }
-  #
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${lifetime_orders} ;;
-  # }
-}
+sql_table_name: arch_outcomes.arch_outcomes ;;
 
-# view: arch_outcomes {
-#   # Or, you could make this view a derived table, like this:
-#   derived_table: {
-#     sql: SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#       ;;
-#   }
-#
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
-#   }
-#
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
-# }
+
+##########  METADATA  ##########
+
+  dimension: outcome_tracker_id {
+    view_label: "Z - Metadata"
+    group_label: "Database IDs"
+    label: "Outcome Tracker ID [Arch_Outcomes]"
+
+    primary_key: yes
+    type: string
+    hidden: no
+
+    sql: ${TABLE}.outcome_tracker_id ;;
+  }
+
+
+  ##########  DIMENSIONS  ##########
+
+  set: drill_outcome {
+    fields: [
+      outcome_quality,
+      outcome_intent,
+      outcome_mechanism
+    ]
+  }
+
+  dimension: outcome_intent {
+    view_label: "6. Outcomes"
+    label: "Outcome Intent"
+
+    type: string
+    sql: ${TABLE}.outcome_intent ;;
+  }
+
+  dimension: outcome_mechanism {
+    view_label: "6. Outcomes"
+    label: "Outcome Mechanism"
+
+    type: string
+    sql: ${TABLE}.outcome_mechanism ;;
+  }
+
+  dimension: outcome_quality {
+    view_label: "6. Outcomes"
+    label: "Outcome Quality"
+
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.outcome_quality = 'Referrals' ;;
+        label: "Referrals"
+      }
+      when: {
+        sql: ${TABLE}.outcome_quality = 'Leads' ;;
+        label: "Leads"
+      }
+      else: "Outcomes"
+    }
+
+  }
+
+  dimension: outcome_score {
+    view_label: "6. Outcomes"
+    label: "Outcome Score"
+
+    type: number
+    sql: ${TABLE}.outcome_score ;;
+  }
+
+  dimension: outcome_type_category {
+    view_label: "6. Outcomes"
+    label: "Outcome Type - Category"
+
+    type: string
+
+    case: {
+      when: {
+        sql: ${outcome_type} LIKE 'LP%' ;;
+        label: "LP Visits"
+      }
+      when: {
+        sql: ${outcome_type} LIKE 'Ad%' ;;
+        label: "Direct Calls"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%FAD%' ;;
+        label: "FAD Visits"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%MyChart%' ;;
+        label: "MyChart Visits"
+      }
+      else: "Uncategorized Type"
+    }
+  }
+
+  dimension: outcome_type {
+    view_label: "6. Outcomes"
+    label: "Outcome Type"
+
+    type: string
+    sql: ${TABLE}.outcome_type ;;
+  }
+
+  dimension: outcome_type_name {
+    view_label: "6. Outcomes"
+    label: "Outcome Type Name"
+
+    type: string
+    sql: ${TABLE}.outcome_type_name ;;
+  }
+}

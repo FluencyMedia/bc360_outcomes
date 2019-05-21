@@ -7,5 +7,5 @@ include: "*.view.lkml"
 label: "BC360 - Admin"
 
 explore: arch_outcomes_admin {
-  label: "Outcome Architecture"
+  label: "Outcome Architecture [ADMIN]"
 }

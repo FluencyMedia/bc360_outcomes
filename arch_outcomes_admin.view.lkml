@@ -5,14 +5,14 @@ view: arch_outcomes_admin {
     # datagroup_trigger: dg_bc360_bq
 
     sql:  SELECT
-           outcome_tracker_id,
+           CAST(outcome_tracker_id AS INT64) outcome_tracker_id,
            outcome_intent,
            outcome_mechanism,
            outcome_quality,
            outcome_score,
            outcome_type,
            outcome_type_name
-         FROM arch_outcomes.arch_outcomes ao;;
+         FROM arch_outcomes.arch_outcomes_base ao;;
   }
 
 ##########  METADATA  ##########

@@ -2,7 +2,7 @@ view: arch_outcomes_admin {
   # sql_table_name: bc360_arch_marketing.arch_outcomes ;;
 
   derived_table: {
-    # datagroup_trigger: dg_bc360_bq
+    datagroup_trigger: dg_bc360_outcomes
 
     sql:  SELECT
            CAST(outcome_tracker_id AS INT64) outcome_tracker_id,

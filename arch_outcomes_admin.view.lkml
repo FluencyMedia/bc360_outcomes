@@ -83,22 +83,26 @@ view: arch_outcomes_admin {
 
     case: {
       when: {
-        sql: ${outcome_type} LIKE 'LP%' ;;
-        label: "LP Visits"
+        sql: ${outcome_type} LIKE 'LP Calls%' ;;
+        label: "LP Calls"
       }
       when: {
         sql: ${outcome_type} LIKE 'Ad%' ;;
-        label: "Direct Calls"
+        label: "Ad Calls"
+      }
+      when: {
+        sql: ${outcome_type} LIKE 'LP Form%' ;;
+        label: "LP Forms"
       }
       when: {
         sql: ${outcome_type} LIKE '%FAD%' ;;
-        label: "FAD Visits"
+        label: "FAD Forms"
       }
       when: {
         sql: ${outcome_type} LIKE '%MyChart%' ;;
-        label: "MyChart Visits"
+        label: "MyChart Forms"
       }
-      else: "Uncategorized Type"
+      else: "Uncategorized Referral Type"
     }
   }
 

@@ -24,7 +24,7 @@ view: arch_outcomes_admin {
 
     primary_key: yes
     type: string
-    hidden: no
+    hidden: yes
 
     sql: ${TABLE}.outcome_tracker_id ;;
   }

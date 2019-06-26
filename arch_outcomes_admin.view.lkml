@@ -99,7 +99,7 @@ view: arch_outcomes_admin {
         label: "Ad Calls"
       }
       when: {
-        sql: ${outcome_type} LIKE 'LP Forms - Seminars%' ;;
+        sql: ${outcome_type} LIKE 'LP Form - Seminars%' ;;
         label: "Tours"
       }
       when: {

@@ -112,7 +112,7 @@ view: arch_outcomes_admin {
       }
       when: {
         sql: ${outcome_type} LIKE '%Action - Website%' ;;
-        label: "Website 'Action'"
+        label: "FAD Forms"
       }
       when: {
         sql: ${outcome_type} LIKE '%FAD%' ;;

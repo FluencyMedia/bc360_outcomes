@@ -99,6 +99,10 @@ view: arch_outcomes_admin {
         label: "Ad Calls"
       }
       when: {
+        sql: ${outcome_type} LIKE 'LP Forms - Seminars%' ;;
+        label: "Tours"
+      }
+      when: {
         sql: ${outcome_type} LIKE 'LP Form%' ;;
         label: "LP Forms"
       }

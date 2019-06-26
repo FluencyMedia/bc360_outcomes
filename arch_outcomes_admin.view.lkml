@@ -91,11 +91,31 @@ view: arch_outcomes_admin {
         label: "Ad Calls"
       }
       when: {
+        sql: ${outcome_type} LIKE '%Website Calls%' ;;
+        label: "Website Calls"
+      }
+      when: {
+        sql: ${outcome_type} LIKE 'Ad%' ;;
+        label: "Ad Calls"
+      }
+      when: {
         sql: ${outcome_type} LIKE 'LP Form%' ;;
         label: "LP Forms"
       }
       when: {
+        sql: ${outcome_type} LIKE '%Form - Website%' ;;
+        label: "Website Forms"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Action - Website%' ;;
+        label: "Website 'Action'"
+      }
+      when: {
         sql: ${outcome_type} LIKE '%FAD%' ;;
+        label: "FAD Forms"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Process Step%Appt Request%' ;;
         label: "FAD Forms"
       }
       when: {

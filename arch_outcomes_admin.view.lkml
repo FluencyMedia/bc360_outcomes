@@ -53,6 +53,7 @@ view: arch_outcomes_admin {
   dimension: outcome_quality {
     view_label: "6. Outcomes"
     label: "Outcome Quality"
+    description: "'Referrals' | 'Leads' | 'Outcomes'"
 
     type: string
     case: {

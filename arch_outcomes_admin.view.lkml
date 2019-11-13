@@ -35,6 +35,7 @@ view: arch_outcomes_admin {
   dimension: outcome_intent {
     view_label: "6. Outcomes"
     label: "Outcome Intent"
+    description: "'Appt Requests' | 'Classes' | 'Events' | 'Classes' | 'Seminars', etc."
 
     type: string
     sql: ${TABLE}.outcome_intent ;;
@@ -43,6 +44,7 @@ view: arch_outcomes_admin {
   dimension: outcome_mechanism {
     view_label: "6. Outcomes"
     label: "Outcome Mechanism"
+    description: "'Calls' | 'Form Fills' | 'HRAs', etc."
 
     type: string
     sql: ${TABLE}.outcome_mechanism ;;
@@ -78,6 +80,7 @@ view: arch_outcomes_admin {
   dimension: outcome_type_category {
     view_label: "6. Outcomes"
     label: "Outcome Type - Category"
+    description: "Custom layer that groups more 'Outcome Types'"
 
     type: string
 
@@ -93,10 +96,6 @@ view: arch_outcomes_admin {
       when: {
         sql: ${outcome_type} LIKE '%Website Calls%' ;;
         label: "Website Calls"
-      }
-      when: {
-        sql: ${outcome_type} LIKE 'Ad%' ;;
-        label: "Ad Calls"
       }
       when: {
         sql: ${outcome_type} LIKE 'LP Form - Seminars%' ;;
@@ -126,6 +125,10 @@ view: arch_outcomes_admin {
         sql: ${outcome_type} LIKE '%MyChart%' ;;
         label: "MyChart Forms"
       }
+      when: {
+        sql: ${outcome_type} LIKE '%HRA%' ;;
+        label: "HRA Completions"
+      }
       else: "Uncategorized Referral Type"
     }
   }
@@ -133,6 +136,7 @@ view: arch_outcomes_admin {
   dimension: outcome_type {
     view_label: "6. Outcomes"
     label: "Outcome Type"
+    description: "Detailed custom categories from mapping spreadsheet"
 
     type: string
     sql: ${TABLE}.outcome_type ;;
@@ -141,6 +145,7 @@ view: arch_outcomes_admin {
   dimension: outcome_type_name {
     view_label: "6. Outcomes"
     label: "Outcome Type Name"
+    description: "Label that comes in direct from Google Ads"
 
     type: string
     sql: ${TABLE}.outcome_type_name ;;

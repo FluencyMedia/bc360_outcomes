@@ -73,6 +73,8 @@ view: arch_outcomes_admin {
   dimension: outcome_score {
     view_label: "6. Outcomes"
     label: "Outcome Score"
+    description: "Score from 1-5 (NOT USED)"
+    hidden: yes
 
     type: number
     sql: ${TABLE}.outcome_score ;;

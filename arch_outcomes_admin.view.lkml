@@ -35,7 +35,7 @@ view: arch_outcomes_admin {
   dimension: outcome_intent {
     view_label: "6. Outcomes"
     label: "Outcome Intent"
-    description: "'Appt Requests' | 'Classes' | 'Events' | 'Classes' | 'Seminars', etc."
+    description: "'Appt Requests' | 'Classes' | 'Events' | 'Classes' | 'Seminars', etc. [MAPPED]"
 
     type: string
     sql: ${TABLE}.outcome_intent ;;
@@ -44,7 +44,7 @@ view: arch_outcomes_admin {
   dimension: outcome_mechanism {
     view_label: "6. Outcomes"
     label: "Outcome Mechanism"
-    description: "'Calls' | 'Form Fills' | 'HRAs', etc."
+    description: "'Calls' | 'Form Fills' | 'HRAs', etc. [MAPPED]"
 
     type: string
     sql: ${TABLE}.outcome_mechanism ;;
@@ -53,7 +53,7 @@ view: arch_outcomes_admin {
   dimension: outcome_quality {
     view_label: "6. Outcomes"
     label: "Outcome Quality"
-    description: "'Referrals' | 'Leads' | 'Outcomes'"
+    description: "'Referrals' | 'Leads' | 'Outcomes' [MAPPED]"
 
     type: string
     case: {
@@ -83,7 +83,7 @@ view: arch_outcomes_admin {
   dimension: outcome_type_category {
     view_label: "6. Outcomes"
     label: "Outcome Type - Category"
-    description: "Custom layer that groups more 'Outcome Types'"
+    description: "Groups specific 'Outcome Types' into broader buckets [LookML 'CASE' statement]"
 
     type: string
 
@@ -139,7 +139,7 @@ view: arch_outcomes_admin {
   dimension: outcome_type {
     view_label: "6. Outcomes"
     label: "Outcome Type"
-    description: "Detailed custom categories from mapping spreadsheet"
+    description: "Detailed outcome labels [MAPPED]"
 
     type: string
     sql: ${TABLE}.outcome_type ;;
@@ -148,7 +148,7 @@ view: arch_outcomes_admin {
   dimension: outcome_type_name {
     view_label: "6. Outcomes"
     label: "Outcome Type Name"
-    description: "Label that comes in direct from Google Ads"
+    description: "Original 'conversion_type_name' [PASS-THRU from Google Ads]"
 
     type: string
     sql: ${TABLE}.outcome_type_name ;;

@@ -5,14 +5,14 @@ view: arch_outcomes_admin {
     datagroup_trigger: dg_bc360_outcomes
 
     sql:  SELECT
-           CAST(outcome_tracker_id AS INT64) outcome_tracker_id,
-           outcome_intent,
-           outcome_mechanism,
-           outcome_quality,
-           outcome_score,
-           outcome_type,
-           outcome_type_name
-         FROM arch_outcomes.arch_outcomes_base ao;;
+            CAST(outcome_tracker_id AS INT64) outcome_tracker_id,
+            outcome_intent,
+            outcome_mechanism,
+            outcome_quality,
+            outcome_score,
+            outcome_type,
+            outcome_type_name
+         FROM arch_outcomes.arch_outcomes ao;;
   }
 
 ##########  METADATA  ##########
@@ -24,7 +24,7 @@ view: arch_outcomes_admin {
 
     primary_key: yes
     type: string
-    hidden: yes
+    hidden: no
 
     sql: ${TABLE}.outcome_tracker_id ;;
   }
@@ -131,6 +131,18 @@ view: arch_outcomes_admin {
       when: {
         sql: ${outcome_type} LIKE '%HRA%' ;;
         label: "HRA Completions"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Process Step%RV Care%' ;;
+        label: "RV Care Signup"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Download%' ;;
+        label: "Download"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Email%Subscription%' ;;
+        label: "Email Subscription"
       }
       else: "Uncategorized Referral Type"
     }

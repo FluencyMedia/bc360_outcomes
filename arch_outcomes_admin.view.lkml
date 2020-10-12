@@ -109,7 +109,19 @@ view: arch_outcomes_admin {
         label: "LP Forms"
       }
       when: {
+        sql: ${outcome_type} LIKE '%In%Person - Appointment%' ;;
+        label: "In-person"
+      }
+      when: {
         sql: ${outcome_type} LIKE '%Form - Website%' ;;
+        label: "Website Forms"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Form - General%' ;;
+        label: "Website Forms"
+      }
+      when: {
+        sql: ${outcome_type} LIKE '%Form - Microsite%' ;;
         label: "Website Forms"
       }
       when: {

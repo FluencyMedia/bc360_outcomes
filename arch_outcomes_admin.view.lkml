@@ -83,7 +83,7 @@ view: arch_outcomes_admin {
 
   dimension: outcome_type_category {
     view_label: "6. Outcomes"
-    label: "Outcome Type - Category"
+    label: "Outcome Category"
 
     type: string
     sql:  ${TABLE}.outcome_type_category;;
@@ -173,7 +173,7 @@ view: arch_outcomes_admin {
 
   dimension: outcome_type {
     view_label: "6. Outcomes"
-    label: "Outcome Type"
+    label: "Outcome"
     description: "Detailed outcome labels [MAPPED]"
 
     type: string
@@ -185,6 +185,7 @@ view: arch_outcomes_admin {
     label: "Outcome Type Name"
     description: "Original 'conversion_type_name' [PASS-THRU from Google Ads]"
 
+    hidden: yes
     type: string
     sql: ${TABLE}.outcome_type_name ;;
   }

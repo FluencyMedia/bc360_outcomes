@@ -35,7 +35,7 @@ view: arch_outcomes_admin {
 
   dimension: outcome_intent {
     view_label: "6. Outcomes"
-    label: "Outcome Intent"
+    label: "Patient Intent"
     description: "'Appt Requests' | 'Classes' | 'Events' | 'Classes' | 'Seminars', etc. [MAPPED]"
 
     type: string
@@ -90,87 +90,6 @@ view: arch_outcomes_admin {
 
   }
 
-  dimension: outcome_type_category_legacy {
-    view_label: "6. Outcomes"
-    label: "Outcome Type - Category"
-    description: "Groups specific 'Outcome Types' into broader buckets [LookML 'CASE' statement]"
-
-    type: string
-    hidden: yes
-
-    case: {
-      when: {
-        sql: ${outcome_type} LIKE 'LP Calls%' ;;
-        label: "LP Calls"
-      }
-      when: {
-        sql: ${outcome_type} LIKE 'Ad%' ;;
-        label: "Ad Calls"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Website Calls%' ;;
-        label: "Website Calls"
-      }
-      when: {
-        sql: ${outcome_type} LIKE 'LP Form - Seminars%' ;;
-        label: "Tours"
-      }
-      when: {
-        sql: ${outcome_type} LIKE 'LP Form%' ;;
-        label: "LP Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%In%Person - Appointment%' ;;
-        label: "In-person"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Form - Website%' ;;
-        label: "Website Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Form - General%' ;;
-        label: "Website Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Form - Microsite%' ;;
-        label: "Website Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Action - Website%' ;;
-        label: "FAD Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%FAD%' ;;
-        label: "FAD Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Process Step%Appt Request%' ;;
-        label: "FAD Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%MyChart%' ;;
-        label: "MyChart Forms"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%HRA%' ;;
-        label: "HRA Completions"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Process Step%RV Care%' ;;
-        label: "RV Care Signup"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Download%' ;;
-        label: "Download"
-      }
-      when: {
-        sql: ${outcome_type} LIKE '%Email%Subscription%' ;;
-        label: "Email Subscription"
-      }
-      else: "Uncategorized Referral Type"
-    }
-  }
-
   dimension: outcome_type {
     view_label: "6. Outcomes"
     label: "Outcome"
@@ -182,10 +101,10 @@ view: arch_outcomes_admin {
 
   dimension: outcome_type_name {
     view_label: "6. Outcomes"
-    label: "Outcome Type Name"
+    label: "Outcome Type (ORIGINAL)"
     description: "Original 'conversion_type_name' [PASS-THRU from Google Ads]"
 
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.outcome_type_name ;;
   }

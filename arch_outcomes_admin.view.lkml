@@ -11,7 +11,8 @@ view: arch_outcomes_admin {
             outcome_quality,
             outcome_score,
             outcome_type,
-            outcome_type_name
+            outcome_type_name,
+            outcome_type_category,
          FROM arch_outcomes.arch_outcomes ao;;
   }
 
@@ -83,9 +84,19 @@ view: arch_outcomes_admin {
   dimension: outcome_type_category {
     view_label: "6. Outcomes"
     label: "Outcome Type - Category"
+
+    type: string
+    sql:  ${TABLE}.outcome_type_category;;
+
+  }
+
+  dimension: outcome_type_category_legacy {
+    view_label: "6. Outcomes"
+    label: "Outcome Type - Category"
     description: "Groups specific 'Outcome Types' into broader buckets [LookML 'CASE' statement]"
 
     type: string
+    hidden: yes
 
     case: {
       when: {
